@@ -25,7 +25,7 @@ $slim = new \Slim\App(['settings' => ['displayErrorDetails' => true]]);
 $slim->get('/hello/{name}', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, array $args) {
     $name = $args['name'];
 
-    $cat = new \test\models\Category;
+    $cat = new \App\Models\Category;
     $cat->name = "category x";
     $cat->save();
 

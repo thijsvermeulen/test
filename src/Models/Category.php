@@ -1,6 +1,6 @@
 <?php
 
-namespace test\models;
+namespace App\Models;
 
 class Category extends \Illuminate\Database\Eloquent\Model
 {
