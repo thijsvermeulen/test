@@ -2,12 +2,8 @@
 
 require '../vendor/autoload.php';
 
-/* ==== CONF ==== */
-
 $conf = array_merge( parse_ini_file('../conf-default.ini'), parse_ini_file('../conf-local.ini'));
 
-
-/* ==== ELOQUENT ==== */
 
 $eloquent = new Illuminate\Database\Capsule\Manager;
 $eloquent->addConnection([
@@ -24,23 +20,17 @@ $eloquent->setAsGlobal();
 $eloquent->bootEloquent();
 
 
-/* ==== SLIM ==== */
-
 $slim = new \Slim\App(['settings' => ['displayErrorDetails' => true]]);
 
 $slim->get('/hello/{name}', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, array $args) {
     $name = $args['name'];
 
-    $cat = new Category;
+    $cat = new \test\models\Category;
     $cat->name = "category x";
     $cat->save();
-
 
     $response->getBody()->write("Hello, $name");
     return $response;
 });
-
-
-/* ==== RUN ==== */
 
 $slim->run();
