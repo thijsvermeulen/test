@@ -4,5 +4,11 @@
   "require": {
     "slim/slim": "^3.0",
     "illuminate/database": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "src"
+    }
+
   }
 }

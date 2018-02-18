@@ -1,5 +1,7 @@
 <?php
 
+require 'routes.php';
+
 function run() {
 
     $conf = array_merge( parse_ini_file('../conf-default.ini'), parse_ini_file('../conf-local.ini'));
@@ -18,14 +20,10 @@ function run() {
     $eloquent->setAsGlobal();
     $eloquent->bootEloquent();
 
-    $slim = new \Slim\App;
+    $slim = new \Slim\App(['settings' => ['displayErrorDetails' => true]]);
 
-    $slim->get('/hello/{name}', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, array $args) {
-        $name = $args['name'];
-        $response->getBody()->write("Hello, $name");
-        return $response;
-    });
+    register_routes($slim);
 
-    return $slim;
+    $slim->run();
 }
 
