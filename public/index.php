@@ -3,4 +3,6 @@
 error_reporting(-1);
 ini_set('display_errors', '1');
 
-require "../src/app.php";
+require '../vendor/autoload.php';
+
+(new \App\App())->run();
